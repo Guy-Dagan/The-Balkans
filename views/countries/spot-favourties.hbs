@@ -1,0 +1,15 @@
+<h1>My Favorites</h1>
+
+{{#each favorites}}
+  <div>
+    <h3>{{countries}}</h3>
+    <h3>{{description}}</h3>
+    <img src="{{imageUrl}}" alt="" />
+
+    <form action="/favorites/{{_id}}/delete" method="post">
+      <button type="submit">Remove from Favorites</button>
+    </form>
+  </div>
+{{else}}
+  <p>No favorites yet.</p>
+{{/each}}

@@ -152,7 +152,6 @@ const Country = require("../models/Country.model");
       });
 
 
-
 router.post('/countries/addFavs/:id',  async (req, res, next) => {
   const { id } = req.params;
   const currentUser = req.session.currentUser._id;
@@ -178,8 +177,96 @@ router.post('/countries/removeFavs/:id', async (req, res, next) => {
       next(error);
   }
 });
-    
 
-   
 
-      module.exports = router;
+
+// Create a new bucket list item
+// router.post('/profile/bucketlist', (req, res) => {
+//   const { title, description } = req.body;
+//   const newItem = new BucketList({ title, description });
+//   newItem.save()
+//     .then((item) => res.status(201).json(item))
+//     .catch((err) => {
+//       console.error('Error creating bucket list item:', err);
+//       res.status(500).json({ error: 'Error creating bucket list item' });
+//     });
+// });
+
+// // Get all bucket list items
+// router.get('/profile/bucketlist', (req, res) => {
+//   BucketListItem.find()
+//     .then((items) => res.json(items))
+//     .catch((err) => {
+//       console.error('Error retrieving bucket list items:', err);
+//       res.status(500).json({ error: 'Error retrieving bucket list items' });
+//     });
+// });
+
+// // Get a specific bucket list item by ID
+// router.get('/bucketlist/:id', (req, res) => {
+//   BucketListItem.findById(req.params.id)
+//     .then((item) => {
+//       if (!item) {
+//         return res.status(404).json({ error: 'Bucket list item not found' });
+//       }
+//       res.json(item);
+//     })
+//   })
+//     .catch((err) => {
+//       console.error('Error retrieving bucket list item:', err);
+//       res.status(500).json({
+
+//     })
+//   })
+
+router.get("/favorites", async (req, res) => {
+  try {
+    const userId = req.session.currentUser._id; // Replace with your actual code to retrieve the user ID
+    const user = await User.findById(userId).populate("favorites");
+
+    res.render("countries/spot-favorites", { favorites: user.favorites });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+
+router.post("/favorites", async (req, res) => {
+  try {
+    const { spotId } = req.body;
+    const favoriteSpot = await Country.findById(spotId);
+
+    if (!favoriteSpot) {
+      return res.render("error.hbs", { error: "Spot not found" });
+    }
+
+    const userId = req.session.currentUser._id; // Replace with your actual code to retrieve the user ID
+    await User.findByIdAndUpdate(userId, {
+      $addToSet: { favorites: favoriteSpot },
+    });
+
+    res.redirect("/favorites");
+  } catch (error) {
+    console.log(error);
+    return res.render("error.hbs", { error: "Internal server error" });
+  }
+});
+
+
+
+router.post("/favorites/:id/delete", async (req, res) => {
+  try {
+    const favoriteId = req.params.id;
+    const userId = req.session.currentUser._id; // Replace with your actual code to retrieve the user ID
+
+    await User.findByIdAndUpdate(userId, { $pull: { favorites: favoriteId } });
+
+    res.redirect("/favorites");
+  } catch (error) {
+    console.log(error);
+    return res.render("error.hbs", { error: "Internal server error" });
+  }
+});
+
+
+module.exports = router;
