@@ -1,7 +1,10 @@
-<h2>Country Info</h2>
-<div class="details-box">
-  <h3 class="names">{{countries}}</h3>
-  <p><span class="grey-span">Things to do: </span>{{activitiesType.activities}}</p>
-</div>
-
-
+ {{#if isFav}}
+          <form action="/countries/removeFavs/{{country._id}}" method="post">
+            <button class="tag name" type="submit">Remove from my favourite
+              Beers</button>
+          </form>
+        {{else}}
+          <form action="/countries/addFavs/{{country._id}}" method="post">
+            <button class="tag name" type="submit">Add to my favourite Beer</button>
+          </form>
+        {{/if}}

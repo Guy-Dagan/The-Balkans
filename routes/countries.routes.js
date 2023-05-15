@@ -150,6 +150,34 @@ const Country = require("../models/Country.model");
           next(error);
         }
       });
+
+
+
+router.post('/countries/addFavs/:id',  async (req, res, next) => {
+  const { id } = req.params;
+  const currentUser = req.session.currentUser._id;
+  try {
+      console.log(id)
+      const favouriteCountry = await User.findByIdAndUpdate(currentUser, { $push: { bucketList: id }});
+      res.redirect(`/countries/details/${id}`);
+  } catch (error) {
+      console.log(error);
+      next(error);
+  }
+});
+
+
+router.post('/countries/removeFavs/:id', async (req, res, next) => {
+  const { id } = req.params;
+  const currentUser = req.session.currentUser._id;
+  try {
+      const favouriteCountry = await User.findByIdAndUpdate(currentUser, { $pull: { bucketList: id }});
+      res.redirect(`/countries/details/${id}`);
+  } catch (error) {
+      console.log(error);
+      next(error);
+  }
+});
     
 
    

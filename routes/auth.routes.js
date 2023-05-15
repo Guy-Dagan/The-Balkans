@@ -64,15 +64,14 @@ router.post("/signup", isLoggedOut, (req, res) => {
       return User.create({ email, password: hashedPassword });
     })
     .then((user) => {
-      res.redirect("/auth/login");
+      res.redirect("/login");
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
         res.status(500).render("auth/signup", { errorMessage: error.message });
       } else if (error.code === 11000) {
         res.status(500).render("auth/signup", {
-          errorMessage:
-            "Email needs to be unique. Provide a valid email.",
+          errorMessage: "Email needs to be unique. Provide a valid email.",
         });
       } else {
         next(error);
@@ -90,7 +89,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
   const { email, password } = req.body;
 
   // Check that email, and password are provided
-  if ( email === "" || password === "") {
+  if (email === "" || password === "") {
     res.status(400).render("auth/login", {
       errorMessage:
         "All fields are mandatory. Please provide email and password.",
@@ -134,7 +133,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
           // Remove the password field
           delete req.session.currentUser.password;
 
-          res.redirect("/");
+          res.redirect("/profile");
         })
         .catch((err) => next(err)); // In this case, we send error handling to the error handling middleware.
     })
@@ -151,6 +150,16 @@ router.get("/logout", isLoggedIn, (req, res) => {
 
     res.redirect("/");
   });
+});
+
+router.get("/profile", isLoggedIn, async (req, res) => {
+  try {
+    const currentUser = req.session.currentUser._id;
+    const user = await User.findById(currentUser);
+    res.render("user/user-profile.hbs", { user });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;
