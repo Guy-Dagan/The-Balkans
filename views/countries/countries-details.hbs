@@ -30,9 +30,10 @@
 
 <br>
 <!--Display all the comment-->
-{{#each countries.comments}}
+{{#each country.comments}}
 <div>
-    <p><span>By: {{user.email}}</span>What is this</p>
+  <p>{{content}}</p>
+    {{!-- <p><span>By: {{user.email}}</span>What is this</p> --}}
     <form action="/comment/delete/{{_id}}" method="post">
     <button type="submit">Delete</button>
     </form>

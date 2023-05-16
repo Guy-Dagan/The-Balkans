@@ -269,8 +269,8 @@ router.post("/favorites/:id/delete", async (req, res) => {
 router.get("/countries/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const country = await Country.findById(id);
-    const allCountries = await Country.find();
+    const country = await Country.findById(id).populate('comments');;
+    const allCountries = await Country.find()
 
     res.render("countries/countries-details", { country, allCountries });
   } catch (error) {
@@ -284,16 +284,25 @@ router.get("/countries/:id", async (req, res, next) => {
 
 router.post('/comment/create/:id', (req,res)=>{
   const {id} = req.params;
-  const {user} = req.body; //'body' of the form that was submitted via POST method
+  const { content } = req.body; //'body' of the form that was submitted via POST method
+  const currentUser = req.session.currentUser._id
+
+// create the comment
+// push the country id to the comment
+// push the comment id to the user
+// push the comment id to the country
 
   async function createCommentinDb(){
       try{
           //Create the comment
-          const newComment = await Comment.create({user});
+          const newComment = await Comment.create({content});
+          const commentId = newComment._id
           //Add the comment to the country
-          const countryUpdate = await Country.findByIdAndUpdate(id, {$push: {comments: newComment._id}});
+          const countryUpdate = await Comment.findByIdAndUpdate(commentId, {$push: {countries: id}});
           //Add the comment to the User
-          const userUpdate = await User.findByIdAndUpdate(user, {$push: {comments: newComment._id}});
+          const userUpdate = await User.findByIdAndUpdate(currentUser, {$push: {comments: commentId}});
+          // push the comment id to the country
+          const countryComment = await Country.findByIdAndUpdate(id, {$push: {comments: commentId}})
 
           res.redirect(`/countries/${id}`);
       }
@@ -315,7 +324,7 @@ router.post('/comment/delete/:id', (req,res)=>{
               $pull: {comments: removedComment._id}
           })
 
-          res.redirect('/countries');
+          res.redirect('/profile');
       }
       catch(error){
           console.log(error)
