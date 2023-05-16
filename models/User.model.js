@@ -25,8 +25,16 @@ const userSchema = new Schema(
       {
         type: Schema.Types.ObjectId,
         ref:'Country'
-      }]
+      }],
+      comments: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Comment'
+        }
+    ]
+
   },
+  
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
     timestamps: true,

@@ -4,9 +4,11 @@ const router = express.Router();
 // Require the User model in order to interact with the database
 const Country = require("../models/Country.model");
 const User = require("../models/User.model");
+const Comment = require("../models/Comment.model.js");
+
 
 router.get("/countries-list", (req, res) => {
-  /*     const { activitiesType, location, reviews, description, countries } = req.body;
+  /*     const { activitiesType, location, Comments, description, countries } = req.body;
    */ async function allCountries() {
     try {
       let listOfCountries = await Country.find();
@@ -276,5 +278,50 @@ router.get("/countries/:id", async (req, res, next) => {
     next(error);
   }
 });
+
+
+// COMMENTS ROUTE
+
+router.post('/comment/create/:id', (req,res)=>{
+  const {id} = req.params;
+  const {user} = req.body; //'body' of the form that was submitted via POST method
+
+  async function createCommentinDb(){
+      try{
+          //Create the comment
+          const newComment = await Comment.create({user});
+          //Add the comment to the country
+          const countryUpdate = await Country.findByIdAndUpdate(id, {$push: {comments: newComment._id}});
+          //Add the comment to the User
+          const userUpdate = await User.findByIdAndUpdate(user, {$push: {comments: newComment._id}});
+
+          res.redirect(`/countries/${id}`);
+      }
+      catch(error){
+          console.log(error);
+      }
+  }
+  createCommentinDb();
+});
+
+//Removing the id from the array of users
+
+router.post('/comment/delete/:id', (req,res)=>{
+  const {id} = req.params;
+  async function deleteCommentInDb(){
+      try{
+          const removedComment = await Comment.findByIdAndRemove(id);
+          await User.findByIdAndUpdate(removedComment.user, {
+              $pull: {comments: removedComment._id}
+          })
+
+          res.redirect('/countries');
+      }
+      catch(error){
+          console.log(error)
+      }
+  }
+  deleteCommentInDb();
+})
 
 module.exports = router;

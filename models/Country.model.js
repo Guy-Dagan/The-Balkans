@@ -7,9 +7,10 @@ const countrySchema = new Schema(
      enum:["activites", "food", "sights"],
   },
   location: String,
-  reviews:{
-    enum:["rating", "comment"]
-},
+  comments: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Comment'
+  }],
   description: String,
    countries:{
     enum: ["Albania", "Bosnia and Herzegovina", "Bulgaria", "Croatia", "Greece", "Kosovo", "Montenegro", "North Macedonia", "Romania", "Serbia", "Slovenia"]

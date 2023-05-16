@@ -19,6 +19,26 @@
   <button>Favorites</button>
 </form>
 
+<br>
+    <!--Give a comment-->
+<h4>Leave a comment!</h4>
+    <!--FORM to create a comment-->
+<form action="/comment/create/{{country._id}}" method="post">
+<textarea name="content" id="content" cols="30" rows="5"></textarea>
+<button type="submit">Write a comment</button>
+</form>
+
+<br>
+<!--Display all the comment-->
+{{#each countries.comments}}
+<div>
+    <p><span>By: {{user.email}}</span>What is this</p>
+    <form action="/comment/delete/{{_id}}" method="post">
+    <button type="submit">Delete</button>
+    </form>
+</div>
+{{/each}}
+
 
 
 

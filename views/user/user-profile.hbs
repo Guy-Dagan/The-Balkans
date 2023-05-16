@@ -8,26 +8,13 @@
     <button class="tag name" type='submit'>Delete Account</button>
   </form>
 </header>
-<div class="profile-favs">
-<div>
-  <h2>Your Favourite Spots:</h2>
-  <ul>
-    {{#each user.favSpot}}
 
-      <li>{{email}}</li>
-      <a href="/countries/{{_id}}">More info...</a>
-
-    {{/each}}
-  </ul>
-</div>
-
-<div>
   <h2>Bucketlist:</h2>
   <ul>
     {{#each user.bucketList}}
 
       <li>{{countries}}</li>
-      <a href="/countries/bucketlist/{{_id}}">More info...</a>
+      <a href="/countries/{{_id}}">More about {{this.countries}}</a>
 
 
 <form action="/favorites/{{_id}}/delete" method="post">
