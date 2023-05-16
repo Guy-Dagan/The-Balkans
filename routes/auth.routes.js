@@ -10,6 +10,7 @@ const saltRounds = 10;
 
 // Require the User model in order to interact with the database
 const User = require("../models/User.model");
+const Country = require("../models/Country.model");
 
 // Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require("../middleware/isLoggedOut");
@@ -155,13 +156,14 @@ router.get("/logout", isLoggedIn, (req, res) => {
 router.get("/profile", isLoggedIn, async (req, res) => {
   try {
     const currentUser = req.session.currentUser._id;
-    const user = await User.findById(currentUser);
-    res.render("user/user-profile.hbs", { user });
+    const user = await User.findById(currentUser).populate("bucketList");
+
+    const allCountries = await Country.find();
+
+    res.render("user/user-profile.hbs", { user , allCountries });
   } catch (error) {
     console.log(error);
   }
 });
-
-
 
 module.exports = router;

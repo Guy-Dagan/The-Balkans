@@ -19,7 +19,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/profile">Profile</a>
@@ -29,8 +29,10 @@
             Countries
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/countries/albania">Albania</a></li>
-            <li><a class="dropdown-item" href="/countries/bosnia">Bosnia and Herzegovina</a></li>
+            {{#each allCountries}}
+            <li><a class="dropdown-item" href="/countries/{{this._id}}">{{this.countries}}</a></li>
+            {{/each}}
+{{!--             <li><a class="dropdown-item" href="/countries/bosnia">Bosnia and Herzegovina</a></li>
             <li><a class="dropdown-item" href="/countries/bulgaria">Bulgaria</a></li>
             <li><a class="dropdown-item" href="/countries/croatia">Croatia</a></li>
             <li><a class="dropdown-item" href="/countries/greece">Greece</a></li>
@@ -39,7 +41,7 @@
             <li><a class="dropdown-item" href="/countries/north-macedonia">North Macedonia</a></li>
             <li><a class="dropdown-item" href="/countries/romania">Romania</a></li>
             <li><a class="dropdown-item" href="/countries/serbia">Serbia</a></li>
-            <li><a class="dropdown-item" href="/countries/slovenia">Slovenia</a></li>
+            <li><a class="dropdown-item" href="/countries/slovenia">Slovenia</a></li> --}}
           </ul>
         </li>
         <li class="nav-item">

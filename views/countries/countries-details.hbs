@@ -1,4 +1,4 @@
- {{#if isFav}}
+{{!--  {{#if isFav}}
           <form action="/countries/removeFavs/{{country._id}}" method="post">
             <button class="tag name" type="submit">Remove from my favourite
               Beers</button>
@@ -7,4 +7,22 @@
           <form action="/countries/addFavs/{{country._id}}" method="post">
             <button class="tag name" type="submit">Add to my favourite Beer</button>
           </form>
-        {{/if}}
+        {{/if}} --}}
+
+<h1>{{country.countries}}</h1>
+<hr />
+<p>{{country.location}}</p>
+<p>{{country.activitiesType}}</p>
+<p>{{country.description}}</p>
+
+<form action="/favorites/{{country._id}}" method="post">
+  <button>Favorites</button>
+</form>
+
+
+
+
+{{!-- 
+<img src="{{this.image.0}}" alt="">
+<img src="{{this.image.1}}" alt="">
+<img src="{{this.image.2}}" alt=""> --}}

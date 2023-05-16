@@ -26,8 +26,13 @@
   <ul>
     {{#each user.bucketList}}
 
-      <li>{{name}}</li>
+      <li>{{countries}}</li>
       <a href="/countries/bucketlist/{{_id}}">More info...</a>
+
+
+<form action="/favorites/{{_id}}/delete" method="post">
+  <button>Remove</button>
+</form>
 
     {{/each}}
   </ul>

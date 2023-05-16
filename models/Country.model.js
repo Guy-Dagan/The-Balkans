@@ -13,7 +13,8 @@ const countrySchema = new Schema(
   description: String,
    countries:{
     enum: ["Albania", "Bosnia and Herzegovina", "Bulgaria", "Croatia", "Greece", "Kosovo", "Montenegro", "North Macedonia", "Romania", "Serbia", "Slovenia"]
-  }
+  },
+  images: [String],
 }
 )
 
