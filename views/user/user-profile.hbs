@@ -1,13 +1,12 @@
-<header>
+
+
+
+<header class="profileHeader">
   <h1 class="tag name">Hello, {{user.username}}</h1>
-  <p class="tag location">Logged in with: {{user.email}}</p>
-
-  <a class="tag name" href="/private/profile/edit/{{user._id}}">Edit Account</a>
-
-  <form action='/private/profile/delete/{{user._id}}' method='post'>
-    <button class="tag name" type='submit'>Delete Account</button>
-  </form>
+  <p class="tag location">you are logged in with: {{user.email}}</p>
 </header>
+
+
 
   <h2>Bucketlist:</h2>
   <ul>
@@ -24,6 +23,9 @@
     {{/each}}
   </ul>
 </div>
+</div>
+<div class="mapImg">
+    <img src="/images/map.jpg">
 </div>
 
 

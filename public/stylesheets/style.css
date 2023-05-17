@@ -11,6 +11,9 @@ h1 {
   color: 15px;
 }
 
+.profileHeader {
+  text-align: center;
+}
 nav {
   color: black !important;
 }
@@ -20,7 +23,8 @@ nav {
 }
 
 .mapImg {
-  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .homeTitles {

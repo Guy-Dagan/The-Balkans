@@ -53,14 +53,5 @@
   </div>
 {{/each}}
 
-<button onclick="()=>showTextarea()">edit me</button>
 
-<form action="/comment/edit/{{_id}}" method="post">
-  <button type="submit">Edit Comment</button>
-</form>
-
-<script>
-  function showTextarea(){ const div = document.getElementById("textArea")
-  console.log(div) div.classList.remove("hidden") }
-</script>
 
