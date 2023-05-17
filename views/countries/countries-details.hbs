@@ -16,6 +16,8 @@
   <img class="doImage" src="{{this}}" width="30%" height="auto" />
 {{/each}}
 <div>{{country.doText1}}</div>
+<div>{{country.doText2}}</div>
+<div>{{country.doText3}}</div>
 <hr />
 
 <h3>{{country.titleEat}}</h3>
@@ -23,6 +25,8 @@
   <img class="eatImage" src="{{this}}" width="30%" height="auto" />
 {{/each}}
 <div>{{country.eatText1}}</div>
+<div>{{country.eatText2}}</div>
+<div>{{country.eatText3}}</div>
 
 <form action="/favorites/{{country._id}}" method="post">
   <button>Favorites</button>
