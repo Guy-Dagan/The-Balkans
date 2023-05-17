@@ -2,17 +2,27 @@ const { Schema, model } = require("mongoose");
 
 // TODO: Please make sure you edit the User model to whatever makes sense in this case
 const countrySchema = new Schema({
-  activitiesType: {
-    enum: ["activites", "food", "sights"],
-  },
-  location: String,
+  name: String,
+  quote: String,
+  headerImage: String,
+  description: String,
+  titleSee: String,
+  seeImage: [String],
+  seeText: String,
+  titleDo: String,
+  doImage: [String],
+  doText: String,
+  titleEat: String,
+  eatImage: [String],
+  eatText: String,
+
   comments: [
     {
       type: Schema.Types.ObjectId,
       ref: "Comment",
     },
   ],
-  description: String,
+
   countries: {
     enum: [
       "Albania",
@@ -29,10 +39,12 @@ const countrySchema = new Schema({
     ],
   },
   images: [String],
-  headerImage: String,
-  name: String,
+ 
 });
 
 const Country = model("Country", countrySchema);
 
 module.exports = Country;
+
+
+

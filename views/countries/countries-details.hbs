@@ -9,11 +9,23 @@
           </form>
         {{/if}} --}}
 <h1>{{country.name}}</h1>
-<hr />
-<img class="mainImage" src="{{country.headerImage}}" width="70%" height="auto" />
-<p>{{country.location}}</p>
-<p>{{country.activitiesType}}</p>
+<h5>{{country.quote}}</h5>
+<hr>
+<img class="headerImage" src="{{country.headerImage}}" width="70%" height="auto" />
 <p>{{country.description}}</p>
+<hr>
+<h3>{{country.titleSee}}</h3>
+<div>{{country.seeImage}}</div>
+<div>{{country.seeText}}</div>
+<hr>
+<h3>{{country.titleDo}}</h3>
+<div>{{country.doImage}}</div>
+<div>{{country.doText}}</div>
+<hr>
+<h3>{{country.titleEat}}</h3>
+<div>{{country.eatImage}}</div>
+<div>{{country.eatText}}</div>
+
 
 <form action="/favorites/{{country._id}}" method="post">
   <button>Favorites</button>
