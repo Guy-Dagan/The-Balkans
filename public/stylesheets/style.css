@@ -11,6 +11,10 @@ h1 {
   color: 15px;
 }
 
-nav{
+nav {
   color: black !important;
+}
+
+#navbarSupportedContent {
+  background-color: aqua;
 }

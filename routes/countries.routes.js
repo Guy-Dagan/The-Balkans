@@ -6,7 +6,6 @@ const Country = require("../models/Country.model");
 const User = require("../models/User.model");
 const Comment = require("../models/Comment.model.js");
 
-
 router.get("/countries-list", (req, res) => {
   /*     const { activitiesType, location, Comments, description, countries } = req.body;
    */ async function allCountries() {
@@ -269,8 +268,8 @@ router.post("/favorites/:id/delete", async (req, res) => {
 router.get("/countries/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const country = await Country.findById(id).populate('comments');;
-    const allCountries = await Country.find()
+    const country = await Country.findById(id).populate("comments");
+    const allCountries = await Country.find();
 
     res.render("countries/countries-details", { country, allCountries });
   } catch (error) {
@@ -279,58 +278,61 @@ router.get("/countries/:id", async (req, res, next) => {
   }
 });
 
-
 // COMMENTS ROUTE
 
-router.post('/comment/create/:id', (req,res)=>{
-  const {id} = req.params;
+router.post("/comment/create/:id", (req, res) => {
+  const { id } = req.params;
   const { content } = req.body; //'body' of the form that was submitted via POST method
-  const currentUser = req.session.currentUser._id
+  const currentUser = req.session.currentUser._id;
 
-// create the comment
-// push the country id to the comment
-// push the comment id to the user
-// push the comment id to the country
+  // create the comment
+  // push the country id to the comment
+  // push the comment id to the user
+  // push the comment id to the country
 
-  async function createCommentinDb(){
-      try{
-          //Create the comment
-          const newComment = await Comment.create({content});
-          const commentId = newComment._id
-          //Add the comment to the country
-          const countryUpdate = await Comment.findByIdAndUpdate(commentId, {$push: {countries: id}});
-          //Add the comment to the User
-          const userUpdate = await User.findByIdAndUpdate(currentUser, {$push: {comments: commentId}});
-          // push the comment id to the country
-          const countryComment = await Country.findByIdAndUpdate(id, {$push: {comments: commentId}})
+  async function createCommentinDb() {
+    try {
+      //Create the comment
+      const newComment = await Comment.create({ content });
+      const commentId = newComment._id;
+      //Add the comment to the country
+      const countryUpdate = await Comment.findByIdAndUpdate(commentId, {
+        $push: { countries: id },
+      });
+      //Add the comment to the User
+      const userUpdate = await User.findByIdAndUpdate(currentUser, {
+        $push: { comments: commentId },
+      });
+      // push the comment id to the country
+      const countryComment = await Country.findByIdAndUpdate(id, {
+        $push: { comments: commentId },
+      });
 
-          res.redirect(`/countries/${id}`);
-      }
-      catch(error){
-          console.log(error);
-      }
+      res.redirect(`/countries/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
   }
   createCommentinDb();
 });
 
 //Removing the id from the array of users
 
-router.post('/comment/delete/:id', (req,res)=>{
-  const {id} = req.params;
-  async function deleteCommentInDb(){
-      try{
-          const removedComment = await Comment.findByIdAndRemove(id);
-          await User.findByIdAndUpdate(removedComment.user, {
-              $pull: {comments: removedComment._id}
-          })
+router.post("/comment/delete/:id", (req, res) => {
+  const { id } = req.params;
+  async function deleteCommentInDb() {
+    try {
+      const removedComment = await Comment.findByIdAndRemove(id);
+      await User.findByIdAndUpdate(removedComment.user, {
+        $pull: { comments: removedComment._id },
+      });
 
-          res.redirect('/profile');
-      }
-      catch(error){
-          console.log(error)
-      }
+      res.redirect("/profile");
+    } catch (error) {
+      console.log(error);
+    }
   }
   deleteCommentInDb();
-})
+});
 
 module.exports = router;

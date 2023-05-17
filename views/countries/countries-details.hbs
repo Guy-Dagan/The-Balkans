@@ -8,9 +8,9 @@
             <button class="tag name" type="submit">Add to my favourite Beer</button>
           </form>
         {{/if}} --}}
-
-<h1>{{country.countries}}</h1>
+<h1>{{country.name}}</h1>
 <hr />
+<img class="mainImage" src="{{country.headerImage}}" width="70%" height="auto" />
 <p>{{country.location}}</p>
 <p>{{country.activitiesType}}</p>
 <p>{{country.description}}</p>
@@ -19,29 +19,26 @@
   <button>Favorites</button>
 </form>
 
-<br>
-    <!--Give a comment-->
+<br />
+<!--Give a comment-->
 <h4>Leave a comment!</h4>
-    <!--FORM to create a comment-->
+<!--FORM to create a comment-->
 <form action="/comment/create/{{country._id}}" method="post">
-<textarea name="content" id="content" cols="30" rows="5"></textarea>
-<button type="submit">Write a comment</button>
+  <textarea name="content" id="content" cols="30" rows="5"></textarea>
+  <button type="submit">Write a comment</button>
 </form>
 
-<br>
+<br />
 <!--Display all the comment-->
 {{#each country.comments}}
-<div>
-  <p>{{content}}</p>
+  <div>
+    <p>{{content}}</p>
     {{!-- <p><span>By: {{user.email}}</span>What is this</p> --}}
     <form action="/comment/delete/{{_id}}" method="post">
-    <button type="submit">Delete</button>
+      <button type="submit">Delete</button>
     </form>
-</div>
+  </div>
 {{/each}}
-
-
-
 
 {{!-- 
 <img src="{{this.image.0}}" alt="">
