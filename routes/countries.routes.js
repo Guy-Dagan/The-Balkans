@@ -270,6 +270,7 @@ router.get("/countries/:id", async (req, res, next) => {
     const { id } = req.params;
     const country = await Country.findById(id).populate("comments");
     const allCountries = await Country.find();
+    console.log(country);
 
     res.render("countries/countries-details", { country, allCountries });
   } catch (error) {
@@ -327,12 +328,64 @@ router.post("/comment/delete/:id", (req, res) => {
         $pull: { comments: removedComment._id },
       });
 
-      res.redirect("/profile");
+      res.redirect("back");
     } catch (error) {
       console.log(error);
     }
   }
   deleteCommentInDb();
+});
+
+//edit route
+// POST route to make updates on a specific comment
+router.post("/comment/edit/:id", (req, res) => {
+  const { id } = req.params;
+  async function updateCommentFromDb() {
+    try {
+      let updatedComment = await Comment.findByIdAndUpdate(
+        id,
+        { new: true }
+      );
+      res.redirect(`/comment/${updatedComment._id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  updateCommentFromDb();
+});
+
+// Render the edit country form
+router.get("/countries/edit/:id", async (req, res) => {
+  try {
+    const spot = await Country.findById(req.params.id);
+    res.render("countries/edit", { id });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// Update the country details
+router.post("/countries/edit/:id", async (req, res) => {
+  try {
+    const {
+      description,
+      doText1,
+      doText2,
+      doText3,
+      eatText1,
+      eatText2,
+      eatText3,
+    } = req.body;
+    const spot = await Country.findByIdAndUpdate(
+      req.params.id,
+      { description, doText1, doText2, doText3, eatText1, eatText2, eatText3 },
+      { new: true }
+    );
+    res.redirect(`/countries/countries-details/${id}`);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;

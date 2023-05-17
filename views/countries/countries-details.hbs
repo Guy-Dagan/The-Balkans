@@ -1,31 +1,28 @@
-{{!--  {{#if isFav}}
-          <form action="/countries/removeFavs/{{country._id}}" method="post">
-            <button class="tag name" type="submit">Remove from my favourite
-              Beers</button>
-          </form>
-        {{else}}
-          <form action="/countries/addFavs/{{country._id}}" method="post">
-            <button class="tag name" type="submit">Add to my favourite Beer</button>
-          </form>
-        {{/if}} --}}
+
 <h1>{{country.name}}</h1>
 <h5>{{country.quote}}</h5>
-<hr>
-<img class="headerImage" src="{{country.headerImage}}" width="70%" height="auto" />
+<hr />
+<img
+  class="headerImage"
+  src="{{country.headerImage}}"
+  width="70%"
+  height="auto"
+/>
 <p>{{country.description}}</p>
-<hr>
-<h3>{{country.titleSee}}</h3>
-<div>{{country.seeImage}}</div>
-<div>{{country.seeText}}</div>
-<hr>
-<h3>{{country.titleDo}}</h3>
-<div>{{country.doImage}}</div>
-<div>{{country.doText}}</div>
-<hr>
-<h3>{{country.titleEat}}</h3>
-<div>{{country.eatImage}}</div>
-<div>{{country.eatText}}</div>
+<hr />
 
+<h3>{{country.titleDo}}</h3>
+{{#each country.doImage}}
+  <img class="doImage" src="{{this}}" width="30%" height="auto" />
+{{/each}}
+<div>{{country.doText1}}</div>
+<hr />
+
+<h3>{{country.titleEat}}</h3>
+{{#each country.eatImage}}
+  <img class="eatImage" src="{{this}}" width="30%" height="auto" />
+{{/each}}
+<div>{{country.eatText1}}</div>
 
 <form action="/favorites/{{country._id}}" method="post">
   <button>Favorites</button>
@@ -50,9 +47,20 @@
       <button type="submit">Delete</button>
     </form>
   </div>
+
+  <div id="textArea" class="hidden">
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+  </div>
 {{/each}}
 
-{{!-- 
-<img src="{{this.image.0}}" alt="">
-<img src="{{this.image.1}}" alt="">
-<img src="{{this.image.2}}" alt=""> --}}
+<button onclick="()=>showTextarea()">edit me</button>
+
+<form action="/comment/edit/{{_id}}" method="post">
+  <button type="submit">Edit Comment</button>
+</form>
+
+<script>
+  function showTextarea(){ const div = document.getElementById("textArea")
+  console.log(div) div.classList.remove("hidden") }
+</script>
+

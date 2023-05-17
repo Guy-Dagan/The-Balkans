@@ -6,15 +6,16 @@ const countrySchema = new Schema({
   quote: String,
   headerImage: String,
   description: String,
-  titleSee: String,
-  seeImage: [String],
-  seeText: String,
   titleDo: String,
   doImage: [String],
-  doText: String,
+  doText1: String,
+  doText2: String,
+  doText3: String,
   titleEat: String,
   eatImage: [String],
-  eatText: String,
+  eatText1: String,
+  eatText2: String,
+  eatText3: String,
 
   comments: [
     {
