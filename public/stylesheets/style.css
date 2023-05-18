@@ -1,23 +1,20 @@
-
-
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: white
+  color: white;
 }
 
-
-.navbar{
+.navbar {
   padding: 0% !important;
 }
 
 .navbar-nav {
   padding-left: 40px !important;
 }
-.nav-item{
-    align-items: left;
+.nav-item {
+  align-items: left;
 }
 
 .credentials {
@@ -29,24 +26,28 @@ h1 {
   color: 15px;
 }
 
+/* .user-profile {
+  background-image: url(/images/bled.webp);
+  background-repeat: no-repeat;
+} */
 .countryName {
   text-align: center;
 }
 
-.countryQuote{
+.countryQuote {
   text-align: center;
   font-size: 15px;
   font-style: italic;
 }
 
 .countryDescription {
-  text-align:justify;
+  text-align: justify;
   padding-top: 40px;
   padding-bottom: 40px;
   font-size: 15px;
 }
 
-.countryThing{
+.countryThing {
   text-align: center;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -65,23 +66,23 @@ h1 {
   padding-bottom: 20px;
   font-size: 15px;
 }
-.comment-form{
-  width:100%
+.comment-form {
+  width: 100%;
 }
-.textarea{
-  width:100%
+.textarea {
+  width: 100%;
 }
-.let-us{
+.let-us {
   text-align: center;
 }
-.bucket-list{
+.bucket-list {
   display: flex;
   justify-content: center;
 }
-.container-fluid{
+.container-fluid {
   padding: 0px !important;
 }
-.secondText{
+.secondText {
   text-align: justify;
   font-size: 15px;
   padding-bottom: 5px;
@@ -95,7 +96,10 @@ h1 {
 
 .profileHeader {
   display: flex;
-  justify-content: center;}
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
 .headerImage {
   display: flex;
   justify-content: center;
@@ -106,91 +110,74 @@ nav {
 }
 
 #navbarSupportedContent {
-  background-color:  #00b7ff;
+  background-color: lightblue;
 }
 
-.mapImg {
+.profile-style {
   display: flex;
-  justify-content: right;
-  margin-bottom: 100px;
-
+  justify-content: space-evenly;
 }
 
 .homeTitles {
   text-align: center;
 }
 
-
-.hidden{
+.hidden {
   display: none;
 }
 
-.collapse{
+.collapse {
   justify-content: space-between;
 }
-/* 
-.carousel {
-  width: 300px;
-  height: 200px;
-  overflow: hidden;
-  position:relative
-}
-.slide {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  animation: carouselAnimation 9s infinite;
-}
-@keyframes carouselAnimation {
-  0% {
-    opacity: 0;
-  }
-  8% {
-    opacity: 1;
-  }
-  25% {
-    opacity: 1;
-  }
-  33% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-.slide:nth-child(1) {
-  animation-delay: 0s;
-}
-.slide:nth-child(2) {
-  animation-delay: 3s;
-}
-.slide:nth-child(3) {
-  animation-delay: 6s;
-}
-.slide:nth-child(3) {
-  animation-delay: 6s;
-}
-.slide:nth-child(3) {
-  animation-delay: 6s;
-}
-.slide h3, .slide p {
-  margin: 0;
-}
-.slide h3 {
-  font-size:50px;
-  color: #333;
-}
-.slide p {
-  font-size: 30px;
-  color: #777;
-}
+
 .bucketlist {
-  width: 25%;
-  background-color: #00b7ff;
-  border-radius: 10%;
+  text-align: center;
+  padding: 1rem;
+}
+
+.profile-carousel-header {
+  font-size: 100px;
+}
+
+.profile-carousel-paragraph {
+  font-size: 50px;
+}
+
+.bucketlist-info-div {
+  min-width: 50%;
+}
+
+.bucketlist-title-div {
+  align-items: left;
+}
+
+.profile-content {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: row;
+}
+
+.btn-more-about {
+  color: black;
+}
+
+.list-countries {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile {
+  width: 50%;
+
+  margin-left: 25%;
+}
+
+.bottom-page {
+background-color: lightblue;
+margin-top: 50px !important;
+}
+
+.text-body-secondary {
   text-align: center;
 }
- */
