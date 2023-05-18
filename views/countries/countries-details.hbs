@@ -1,32 +1,57 @@
-
-<h1>{{country.name}}</h1>
-<h5>{{country.quote}}</h5>
+<html>
+<hr>
+<h1 class="countryName">{{country.name}}</h1>
+<h5 class="countryQuote">{{country.quote}}</h5>
 <hr />
+<div class="headerImage">
 <img
-  class="headerImage"
   src="{{country.headerImage}}"
-  width="70%"
-  height="auto"
+  width="100%"
+  height="600px"
 />
-<p>{{country.description}}</p>
+</div>
+<p class="countryDescription">{{country.description}}</p>
 <hr />
-
-<h3>{{country.titleDo}}</h3>
+<h3 class="countryThing">{{country.titleDo}}</h3>
+<hr>
+<div class="threeImg">
 {{#each country.doImage}}
   <img class="doImage" src="{{this}}" width="30%" height="auto" />
 {{/each}}
-<div>{{country.doText1}}</div>
-<div>{{country.doText2}}</div>
-<div>{{country.doText3}}</div>
+</div>
+<div class="firstText">{{country.doText1}}</div>
+
+<ul>
+{{#each country.doText2}}
+  <li class="secondText">{{this}}</li>
+{{/each}}
+</ul>
+
+<div class="threeText">{{country.doText3}}</div>
 <hr />
 
-<h3>{{country.titleEat}}</h3>
+<h3 class="countryThing">{{country.titleEat}}</h3>
+<hr>
+
+<div class="threeImg">
 {{#each country.eatImage}}
   <img class="eatImage" src="{{this}}" width="30%" height="auto" />
 {{/each}}
-<div>{{country.eatText1}}</div>
-<div>{{country.eatText2}}</div>
-<div>{{country.eatText3}}</div>
+</div>
+
+<div class="firstText">{{country.eatText1}}</div>
+
+<ul>
+{{#each country.eatText2}}
+<li class="secondText">{{this}}</li>
+{{/each}}
+</ul>
+
+<div class="threeText">{{country.eatText3}}</div>
+
+<hr>
+<h3 class="countryThing">{{country.thoughts}}</h3>
+<hr>
 
 <form action="/favorites/{{country._id}}" method="post">
   <button>Favorites</button>
@@ -56,6 +81,6 @@
     <textarea name="" id="" cols="30" rows="10"></textarea>
   </div>
 {{/each}}
-
+</html>
 
 

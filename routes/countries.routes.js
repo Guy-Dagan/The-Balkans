@@ -271,6 +271,7 @@ router.get("/countries/:id", async (req, res, next) => {
     const country = await Country.findById(id).populate("comments");
     const allCountries = await Country.find();
     console.log(country);
+    console.log(allCountries);
 
     res.render("countries/countries-details", { country, allCountries });
   } catch (error) {
@@ -342,10 +343,7 @@ router.post("/comment/edit/:id", (req, res) => {
   const { id } = req.params;
   async function updateCommentFromDb() {
     try {
-      let updatedComment = await Comment.findByIdAndUpdate(
-        id,
-        { new: true }
-      );
+      let updatedComment = await Comment.findByIdAndUpdate(id, { new: true });
       res.redirect(`/comment/${updatedComment._id}`);
     } catch (error) {
       console.log(error);

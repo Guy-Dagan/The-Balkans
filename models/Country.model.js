@@ -9,13 +9,14 @@ const countrySchema = new Schema({
   titleDo: String,
   doImage: [String],
   doText1: String,
-  doText2: String,
+  doText2: [String],
   doText3: String,
   titleEat: String,
   eatImage: [String],
   eatText1: String,
-  eatText2: String,
+  eatText2: [String],
   eatText3: String,
+  thoughts: String,
 
   comments: [
     {
