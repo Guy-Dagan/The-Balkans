@@ -52,18 +52,18 @@
 <hr>
 <h3 class="countryThing">{{country.thoughts}}</h3>
 <hr>
-
-<form action="/favorites/{{country._id}}" method="post">
-  <button>Favorites</button>
+<h4 class="let-us">Did you like {{country.name}}? Add it to you Bucketlist!</h4>
+<form class="bucket-list" action="/favorites/{{country._id}}" method="post">
+  <button class="btn btn-light rounded-pill px-3" type="submit">Add to Bucketlist</button>
 </form>
 
 <br />
 <!--Give a comment-->
 <h4>Leave a comment!</h4>
 <!--FORM to create a comment-->
-<form action="/comment/create/{{country._id}}" method="post">
-  <textarea name="content" id="content" cols="30" rows="5"></textarea>
-  <button type="submit">Write a comment</button>
+<form class="comment-form"action="/comment/create/{{country._id}}" method="post">
+  <textarea class="textarea" name="content" id="content" cols="30" rows="5"></textarea>
+   <button class="btn btn-light rounded-pill px-3" type="submit">Write a comment</button>
 </form>
 
 <br />
@@ -73,7 +73,7 @@
     <p>{{content}}</p>
     {{!-- <p><span>By: {{user.email}}</span>What is this</p> --}}
     <form action="/comment/delete/{{_id}}" method="post">
-      <button type="submit">Delete</button>
+       <button class="btn btn-light rounded-pill px-3" type="submit">Delete</button>
     </form>
   </div>
 

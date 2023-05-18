@@ -1,33 +1,38 @@
-
-
-
 <header class="profileHeader">
-  <h1 class="tag name">Hello, {{user.username}}</h1>
-  <p class="tag location">you are logged in with: {{user.email}}</p>
+<div class="carousel">
+   <div class="slide">
+    <h3>Γειά!</h3>
+    <p>Καλως ηρθες!</p>
+  </div>
+  <div class="slide">
+    <h3>Zivijo,</h3>
+    <p>dobrodosli!</p>
+  </div>
+  <div class="slide">
+    <h3>Здраво,</h3>
+    <p>добродошли!</p>
+  </div>
+</div>
 </header>
 
 
-
-  <h2>Bucketlist:</h2>
+<div>
+  <h2 class="bucketlist">My bucketlist:</h2>
   <ul>
     {{#each user.bucketList}}
-
       <li>{{countries}}</li>
       <a href="/countries/{{_id}}">More about {{this.countries}}</a>
-
-
 <form action="/favorites/{{_id}}/delete" method="post">
-  <button>Remove</button>
+<button class="btn btn-light rounded-pill px-3" type="submit">Remove</button>
 </form>
-
     {{/each}}
   </ul>
+</div>
 </div>
 </div>
 <div class="mapImg">
     <img src="/images/map.jpg">
 </div>
-
 
 
 <div class="logout">
