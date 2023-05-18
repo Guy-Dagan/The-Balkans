@@ -6,6 +6,8 @@ const Country = require("../models/Country.model");
 const User = require("../models/User.model");
 const Comment = require("../models/Comment.model.js");
 
+const isLoggedIn = require("../middleware/isLoggedIn");
+
 router.get("/countries-list", (req, res) => {
   /*     const { activitiesType, location, Comments, description, countries } = req.body;
    */ async function allCountries() {
@@ -265,7 +267,7 @@ router.post("/favorites/:id/delete", async (req, res) => {
   }
 });
 
-router.get("/countries/:id", async (req, res, next) => {
+router.get("/countries/:id", isLoggedIn, async (req, res, next) => {
   try {
     const { id } = req.params;
     const country = await Country.findById(id).populate("comments");
