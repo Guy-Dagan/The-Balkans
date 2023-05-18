@@ -1,5 +1,4 @@
 <html lang='en'>
-
   <head>
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
@@ -12,9 +11,6 @@
   <body>
    <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    {{!-- <a class="navbar-brand" href="/">The Balkans</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span> --}}
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -32,26 +28,19 @@
             {{#each allCountries}}
             <li><a class="dropdown-item" href="/countries/{{this._id}}">{{this.countries}}</a></li>
             {{/each}}
-{{!--             <li><a class="dropdown-item" href="/countries/bosnia">Bosnia and Herzegovina</a></li>
-            <li><a class="dropdown-item" href="/countries/bulgaria">Bulgaria</a></li>
-            <li><a class="dropdown-item" href="/countries/croatia">Croatia</a></li>
-            <li><a class="dropdown-item" href="/countries/greece">Greece</a></li>
-            <li><a class="dropdown-item" href="/countries/kosovo">Kosovo</a></li>
-            <li><a class="dropdown-item" href="/countries/montenegro">Montenegro</a></li>
-            <li><a class="dropdown-item" href="/countries/north-macedonia">North Macedonia</a></li>
-            <li><a class="dropdown-item" href="/countries/romania">Romania</a></li>
-            <li><a class="dropdown-item" href="/countries/serbia">Serbia</a></li>
-            <li><a class="dropdown-item" href="/countries/slovenia">Slovenia</a></li> --}}
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled"></a>
-        </li>
       </ul>
-      {{!-- <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form> --}}
+     <div class="credentials">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Log in</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/signup">Sign Up</a>
+              </li>
+            </ul>
+          </div>
     </div>
   </div>
 </nav>
@@ -63,5 +52,5 @@
     <script src='/javascripts/script.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
   </body>
-
 </html>
+

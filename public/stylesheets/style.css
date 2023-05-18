@@ -1,12 +1,28 @@
 
 
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: white
+}
+
+
+.navbar{
+  padding: 0% !important;
+}
+
+.navbar-nav {
+  padding-left: 40px !important;
+}
+.nav-item{
+    align-items: left;
+}
+
+.credentials {
+  display: flex;
+  justify-content: left;
 }
 
 h1 {
