@@ -6,6 +6,7 @@ a {
   color: white;
 }
 
+
 .navbar {
   padding: 0% !important;
 }
@@ -169,8 +170,8 @@ nav {
 
 .profile {
   width: 50%;
-
   margin-left: 25%;
+  margin-bottom: -100px;
 }
 
 .bottom-page {
@@ -180,4 +181,16 @@ margin-top: 50px !important;
 
 .text-body-secondary {
   text-align: center;
+}
+
+.home-text{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.home-text-1{
+  padding-top: 0px;
+  padding-bottom: 90px;
+}
+.home-title{
+  padding-top: 10px;
 }
